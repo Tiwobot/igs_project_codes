@@ -369,4 +369,4 @@ try:
 		data1.write(str(point.x) +' '+ str(point.x) +' '+ str(point.x) + '\n')
 
 finally:
-	data1.close()	
+	data1.close()
