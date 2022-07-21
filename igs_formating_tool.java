@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class igs_formating_tool {
+static String key= "parca10";
 
     public static void main(String[] args) {
 
         try {
-            File file = new File("part.igs"); 
+            File file = new File("igsdata/igsFiles/"+key+".igs"); 
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             StringBuffer igs_global = new StringBuffer();
@@ -42,13 +43,13 @@ public class igs_formating_tool {
             System.out.println(igs_directory.toString());
             System.out.println(igs_parameter.toString());
 
-            try (PrintWriter out = new PrintWriter("igs_global.txt")) {
+            try (PrintWriter out = new PrintWriter("igsdata/DGP/"+key+"_global.txt")) {
                 out.println(igs_global.toString());
             }
-            try (PrintWriter out = new PrintWriter("igs_directory.txt")) {
+            try (PrintWriter out = new PrintWriter("igsdata/DGP/"+key+"_directory.txt")) {
                 out.println(igs_directory.toString());
             }
-            try (PrintWriter out = new PrintWriter("igs_parameter.txt")) {
+            try (PrintWriter out = new PrintWriter("igsdata/DGP/"+key+"_parameter.txt")) {
                 out.println(igs_parameter.toString());
             }
             

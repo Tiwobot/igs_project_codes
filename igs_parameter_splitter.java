@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class igs_parameter_splitter {
+    static String key = "parca71";
+
     public static void main(String[] args) {
+
         try {
-            File file = new File("igs_parameter.txt");
+            File file = new File("igsdata/DGP/" + key + "_parameter.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             StringBuffer parameters = new StringBuffer();
@@ -141,14 +144,38 @@ public class igs_parameter_splitter {
     }
 
     public static void coordinatecalculator(String[] coordinates, int prtype, int ID) {
-        StringBuffer coordinatetxt = new StringBuffer();
+        StringBuffer coordinateTextWithSpace = new StringBuffer();
+        StringBuffer coordinateTextWithComma = new StringBuffer();
+        StringBuffer coordinateTextDeBug = new StringBuffer();
         if (Float.parseFloat(coordinates[0]) > 1500) {
-            coordinatetxt.append(coordinates[0]).append(" ").append(coordinates[1]).append(" ").append(coordinates[2]);
-            try (Writer out = new BufferedWriter(new FileWriter("coordinates.txt", true))) {
-                out.append(coordinatetxt.toString());
-                // out.append(" " + prtype + " " + ID);
-                out.append("\n");
-                out.close();
+            coordinateTextWithSpace.append(coordinates[0]).append(" ").append(coordinates[1]).append(" ")
+                    .append(coordinates[2]);
+            coordinateTextWithComma.append(coordinates[0]).append(",").append(coordinates[1]).append(",")
+                    .append(coordinates[2]);
+            coordinateTextDeBug.append(coordinates[0]).append("\t").append(coordinates[1]).append("\t")
+                    .append(coordinates[2]);
+            try (Writer Space = new BufferedWriter(
+                    new FileWriter("igsdata/pointCloud/withSpace/" + key + "_coordinates.dat", true));
+                    Writer Comma = new BufferedWriter(
+                            new FileWriter("igsdata/pointCloud/withComma/" + key + "_coordinates.txt", true));
+                    Writer Bug = new BufferedWriter(
+                            new FileWriter("igsdata/pointCloud/bugAnalysis/" + key + "_coordinates.txt", true));
+                            
+            ) {
+                Space.append(coordinateTextWithSpace.toString());
+                Space.append("\n");
+                Space.close();
+
+                Comma.append(coordinateTextWithComma.toString());
+                Comma.append("\n");
+                Comma.close();
+
+                Bug.append(coordinateTextDeBug.toString());
+                Bug.append(" " + prtype + " " + ID);
+                Bug.append("\n");
+                Bug.close();
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
