@@ -129,11 +129,15 @@ public class igs_parameter_splitter {
                 temp_b = 0;
             }
 
+            System.out.print(temp_a);
+            System.out.print(temp_b);
+
             for (int i = temp_a; i <= temp_b; i = i + 3) {
                 String get1, get2, get3;
                 get1 = (parameters.split(",")[i]);
                 get2 = (parameters.split(",")[i + 1]);
                 get3 = (parameters.split(",")[i + 2]);
+                System.out.print(get1);
 
                 coordinates[0] = get1;
                 coordinates[1] = get2;

@@ -281,7 +281,7 @@ def initial():
 points = []
 
 try:
-	data = open("coordinates.dat", "r")
+	data = open("igsdata/pointCloud/withSpace/parca10_coordinates.dat", "r")
 	num = int(data.readline())
 	for line in data:
 		a = list(map(float, line.split()))
