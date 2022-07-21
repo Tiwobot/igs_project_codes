@@ -73,12 +73,17 @@ public class igs_parameter_splitter {
             coordinates[0] = (parameters.split(",")[1]);
             coordinates[1] = (parameters.split(",")[2]);
             coordinates[2] = (parameters.split(",")[3]);
-            coordinatecalculator(coordinates, 108, ID);
+            coordinatecalculator(coordinates, 110, ID);
             coordinates[0] = (parameters.split(",")[4]);
             coordinates[1] = (parameters.split(",")[5]);
             coordinates[2] = (parameters.split(",")[6]);
-            coordinatecalculator(coordinates, 108, ID);
-        } else if (header == 118) {
+            coordinatecalculator(coordinates, 110, ID);
+        } else if (header == 116) {
+            coordinates[0] = (parameters.split(",")[1]);
+            coordinates[1] = (parameters.split(",")[2]);
+            coordinates[2] = (parameters.split(",")[3]);
+            coordinatecalculator(coordinates, 116, ID);
+        }else if (header == 118) {
             // sweeps a pointed area
         } else if (header == 120) {
             // rotates a pointed surface
