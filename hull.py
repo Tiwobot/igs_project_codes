@@ -3,6 +3,8 @@
 import math
 import sys
 
+key="parca10"
+
 def set_correct_normal(possible_internal_points,plane):
 	for point in possible_internal_points:
 		dist = dotProduct(plane.normal,point - plane.pointA)
@@ -281,7 +283,7 @@ def initial():
 points = []
 
 try:
-	data = open("igsdata/pointCloud/withSpace/parca10_coordinates.dat", "r")
+	data = open("igsdata/pointCloud/withSpace/"+key+"_coordinates.dat", "r")
 	num = int(data.readline())
 	for line in data:
 		a = list(map(float, line.split()))
@@ -363,9 +365,9 @@ for plane in list_of_planes:
 	final_vertices.add(plane.pointC)
 
 try:
-	data1 = open("data/"+"coordinates"+".txt", "w")
+	data1 = open("data/"+key+"_coordinates"+".txt", "w")
 	for point in final_vertices:
-		data1.write(str(point.x) +' '+ str(point.x) +' '+ str(point.x) + '\n')
+		data1.write(str(point.x) +' '+ str(point.y) +' '+ str(point.z) + '\n')
 
 finally:
 	data1.close()
