@@ -363,8 +363,7 @@ for plane in list_of_planes:
 	final_vertices.add(plane.pointC)
 
 try:
-	data1 = open("data/"+"coordinates"+".out", "w")
-	data1.write(str(len(final_vertices)) + '\n')
+	data1 = open("data/"+"coordinates"+".txt", "w")
 	for point in final_vertices:
 		data1.write(str(point.x) +' '+ str(point.x) +' '+ str(point.x) + '\n')
 

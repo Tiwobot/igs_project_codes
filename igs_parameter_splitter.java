@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class igs_parameter_splitter {
-    static String key = "parca71";
+    static String key = "parca10";
 
     public static void main(String[] args) {
 
@@ -51,56 +51,57 @@ public class igs_parameter_splitter {
         String[] coordinates = new String[3]; // 0->x 1->y 2->z
         int header = Integer.parseInt(head);
         System.out.print(ID + "\n");
+        String[] splittedparameters = parameters.split(",");
         // System.out.print(header);
         // System.out.print("\n");
         if (header == 100) {
-            coordinates[0] = (parameters.split(",")[4]);
-            coordinates[1] = (parameters.split(",")[5]);
-            coordinates[2] = (parameters.split(",")[1]);
+            coordinates[0] = (splittedparameters[4]);
+            coordinates[1] = (splittedparameters[5]);
+            coordinates[2] = (splittedparameters[1]);
             coordinatecalculator(coordinates, 100, ID);
-            coordinates[0] = (parameters.split(",")[6]);
-            coordinates[1] = (parameters.split(",")[7]);
-            coordinates[2] = (parameters.split(",")[1]);
+            coordinates[0] = (splittedparameters[6]);
+            coordinates[1] = (splittedparameters[7]);
+            coordinates[2] = (splittedparameters[1]);
             coordinatecalculator(coordinates, 100, ID);
         } else if (header == 102) {
             // groups composite material
         } else if (header == 108) {
-            coordinates[0] = (parameters.split(",")[6]);
-            coordinates[1] = (parameters.split(",")[7]);
-            coordinates[2] = (parameters.split(",")[8]);
+            coordinates[0] = (splittedparameters[6]);
+            coordinates[1] = (splittedparameters[7]);
+            coordinates[2] = (splittedparameters[8]);
             coordinatecalculator(coordinates, 108, ID);
         } else if (header == 110) {
-            coordinates[0] = (parameters.split(",")[1]);
-            coordinates[1] = (parameters.split(",")[2]);
-            coordinates[2] = (parameters.split(",")[3]);
+            coordinates[0] = (splittedparameters[1]);
+            coordinates[1] = (splittedparameters[2]);
+            coordinates[2] = (splittedparameters[3]);
             coordinatecalculator(coordinates, 110, ID);
-            coordinates[0] = (parameters.split(",")[4]);
-            coordinates[1] = (parameters.split(",")[5]);
-            coordinates[2] = (parameters.split(",")[6]);
+            coordinates[0] = (splittedparameters[4]);
+            coordinates[1] = (splittedparameters[5]);
+            coordinates[2] = (splittedparameters[6]);
             coordinatecalculator(coordinates, 110, ID);
         } else if (header == 116) {
-            coordinates[0] = (parameters.split(",")[1]);
-            coordinates[1] = (parameters.split(",")[2]);
-            coordinates[2] = (parameters.split(",")[3]);
+            coordinates[0] = (splittedparameters[1]);
+            coordinates[1] = (splittedparameters[2]);
+            coordinates[2] = (splittedparameters[3]);
             coordinatecalculator(coordinates, 116, ID);
         }else if (header == 118) {
             // sweeps a pointed area
         } else if (header == 120) {
             // rotates a pointed surface
         } else if (header == 122) {
-            coordinates[0] = (parameters.split(",")[2]);
-            coordinates[1] = (parameters.split(",")[3]);
-            coordinates[2] = (parameters.split(",")[4]);
+            coordinates[0] = (splittedparameters[2]);
+            coordinates[1] = (splittedparameters[3]);
+            coordinates[2] = (splittedparameters[4]);
             coordinatecalculator(coordinates, 122, ID);
         } else if (header == 124) {
             // calculate.
         } else if (header == 126) {
-            int K = Integer.parseInt((parameters.split(",")[1]));
-            int M = Integer.parseInt((parameters.split(",")[2]));
-            int flag1 = Integer.parseInt((parameters.split(",")[3]));
-            int flag2 = Integer.parseInt((parameters.split(",")[4]));
-            int flag3 = Integer.parseInt((parameters.split(",")[5]));
-            int flag4 = Integer.parseInt((parameters.split(",")[6]));
+            int K = Integer.parseInt((splittedparameters[1]));
+            int M = Integer.parseInt((splittedparameters[2]));
+            int flag1 = Integer.parseInt((splittedparameters[3]));
+            int flag2 = Integer.parseInt((splittedparameters[4]));
+            int flag3 = Integer.parseInt((splittedparameters[5]));
+            int flag4 = Integer.parseInt((splittedparameters[6]));
 
             int temp_a = 10 + 2 * K + M;
             int temp_b = 12 + 5 * K + M;
@@ -111,16 +112,16 @@ public class igs_parameter_splitter {
             }
 
             for (int i = temp_a; i <= temp_b; i = i + 3) {
-                coordinates[0] = (parameters.split(",")[i]);
-                coordinates[1] = (parameters.split(",")[i + 1]);
-                coordinates[2] = (parameters.split(",")[i + 2]);
+                coordinates[0] = (splittedparameters[i]);
+                coordinates[1] = (splittedparameters[i + 1]);
+                coordinates[2] = (splittedparameters[i + 2]);
                 coordinatecalculator(coordinates, 126, ID);
             }
         } else if (header == 128) {
-            int K2 = Integer.parseInt((parameters.split(",")[1]));
-            int K1 = Integer.parseInt((parameters.split(",")[2]));
-            int M1 = Integer.parseInt((parameters.split(",")[3]));
-            int M2 = Integer.parseInt((parameters.split(",")[4]));
+            int K2 = Integer.parseInt((splittedparameters[1]));
+            int K1 = Integer.parseInt((splittedparameters[2]));
+            int M1 = Integer.parseInt((splittedparameters[3]));
+            int M2 = Integer.parseInt((splittedparameters[4]));
             int temp_a = 15 + K1 + K2 + K1 + K2 + (1 + K1) * (1 + K2);
             int temp_b = 15 + K1 + K2 + M1 + M2 + (1 + K1) * (1 + K2) + 9 + 3 * (1 + K1) * (1 + K2) - 16;
 
@@ -134,9 +135,9 @@ public class igs_parameter_splitter {
 
             for (int i = temp_a; i <= temp_b; i = i + 3) {
                 String get1, get2, get3;
-                get1 = (parameters.split(",")[i]);
-                get2 = (parameters.split(",")[i + 1]);
-                get3 = (parameters.split(",")[i + 2]);
+                get1 = (splittedparameters[i]);
+                get2 = (splittedparameters[i + 1]);
+                get3 = (splittedparameters[i + 2]);
                 System.out.print(get1);
 
                 coordinates[0] = get1;
