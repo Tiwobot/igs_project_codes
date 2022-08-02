@@ -125,11 +125,6 @@ public class igs_parameter_splitter {
             int temp_a = 15 + K1 + K2 + K1 + K2 + (1 + K1) * (1 + K2);
             int temp_b = 15 + K1 + K2 + M1 + M2 + (1 + K1) * (1 + K2) + 9 + 3 * (1 + K1) * (1 + K2) - 16;
 
-            if (K2 == 5 && K1 == 1 && M1 == 5 && M2 == 1) {
-                temp_a = 1;
-                temp_b = 0;
-            }
-
             System.out.print(temp_a);
             System.out.print(temp_b);
 
