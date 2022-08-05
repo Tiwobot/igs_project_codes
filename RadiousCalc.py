@@ -1,8 +1,9 @@
 import sys
+import numpy as np
 import numpy
 
-from hull import Point
 
+key="parca10"
 
 def get_circumsphere(S):
 
@@ -69,13 +70,18 @@ def get_bounding_ball(S, epsilon=1e-7, rng=numpy.random.default_rng()):
     return root.D
 
 
-a = []
-coordinatesinput = open('coordinates.txt', 'r')
+coordinatesinput = open("igsdata/pointCloud/withSpace/" + key + "_coordinates.dat", 'r')
 Lines = coordinatesinput.readlines()
+counter=1
 for line in Lines:
-    a = float(line.split(" ")[0]), float(
-        line.split(" ")[1]), float(line.split(" ")[2])
+    a = np.array([float(line.split(" ")[0]), float(
+        line.split(" ")[1]), float(line.split(" ")[2])])
+    print(a)
+    if counter==1:
+        S=a
+        counter=5
+    else:
+        S = np.vstack((S, a))
 
-S = numpy.random.randn(5, 3)
-C, r2 = get_bounding_ball(S)
-print(a)
+C, r2 = get_bounding_ball(S) ##S is the list C is the Center and Squeare root of r2 is radious.
+print(S)
