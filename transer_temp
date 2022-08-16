@@ -1,0 +1,21 @@
+import matplotlib.pyplot as plt
+from skimage.morphology import skeletonize, skeletonize_3d
+from skimage.data import binary_blobs
+
+
+data = binary_blobs(300)
+
+skeleton = skeletonize(data)
+skeleton3d = skeletonize_3d(data)
+
+print (data)
+
+fig, axes = plt.subplots(1, 2, figsize=(8, 4))
+ax = axes.ravel()
+
+ax[0].imshow(data, cmap=plt.cm.gray, interpolation='nearest')
+
+ax[1].imshow(skeleton3d, cmap=plt.cm.gray, interpolation='nearest')
+
+fig.tight_layout()
+plt.show()
